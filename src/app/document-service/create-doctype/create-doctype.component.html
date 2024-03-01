@@ -1,0 +1,45 @@
+<div class="card" >
+  <div class="card-header  text-center">Добавление типа документа</div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group mb-3">
+        <label for="type_of_document" class="form-label">Тип документа</label>
+        <input type="text" class="form-control" id="type_of_document"
+               [(ngModel)]="documentType.typeOfDocument" name="typeOfDocument">
+        <div id="type_of_document_help" class="form-text">
+          Тип документа: "Паспорт", "Сертификат" и т.д.
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="document_fields" class="form-label">Реквизиты документа</label>
+        <table *ngIf="documentType.documentFields.length != 0" class="table table-striped table-bordered"
+               id="document_fields">
+          <tbody>
+          <tr *ngFor="let field of documentType.documentFields; let i = index">
+            <td> #{{ i }}</td>
+            <td> {{ documentType.documentFields[i] }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <form (ngSubmit)="onAdd()">
+          <div class="input-group">
+            <input type="text" class="form-control" id="newField"
+                   [(ngModel)]="newField" name="newField" placeholder="Новый реквизит документа">
+            <button class="btn btn-outline-secondary" type="submit">Добавить</button>
+          </div>
+          <div id="new_field_help" class="form-text">
+            Реквизит документа: "Серия", "Номер" и т.д.
+          </div>
+        </form>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="description" class="form-label">Примечание</label>
+        <input type="text" class="form-control" id="description"
+               [(ngModel)]="documentType.description" name="description">
+      </div>
+      <button class="btn btn-success" type="submit">Добавить</button>
+    </form>
+  </div>
+</div>

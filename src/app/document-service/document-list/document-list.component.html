@@ -1,0 +1,17 @@
+<p>document-list works!</p>
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>UUID</th>
+    <th>Персона</th>
+    <th>Должность</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let document of documents">
+    <td> {{ document.uuid }} </td>
+    <td> {{ document.documentType.typeOfDocument }} </td>
+    <td> {{ document.attachment.name }} </td>
+  </tr>
+  </tbody>
+</table>
