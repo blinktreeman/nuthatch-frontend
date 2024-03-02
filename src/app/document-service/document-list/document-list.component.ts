@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DocumentService} from "../document.service";
 import {CustomDocument} from "../models/customdocument";
 import {NgForOf} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-document-list',
@@ -16,7 +17,8 @@ export class DocumentListComponent implements OnInit {
 
   documents: CustomDocument[] | undefined;
 
-  constructor(private documentService: DocumentService) {
+  constructor(private documentService: DocumentService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,5 +34,9 @@ export class DocumentListComponent implements OnInit {
         console.log(err);
       }
     });
+  }
+
+  createDocument(): void {
+    this.router.navigate(['/create-document']);
   }
 }

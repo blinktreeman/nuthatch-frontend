@@ -12,6 +12,10 @@ export class DocumentService {
 
   constructor(private http: HttpClient) { }
 
+  createDocument(document: CustomDocument): Observable<CustomDocument> {
+    return this.http.post<CustomDocument>(`${this.BASE_URL}`, document);
+  }
+
   getDocumentList(): Observable<CustomDocument[]> {
     return this.http.get<CustomDocument[]>(`${this.BASE_URL}/all`)
   }

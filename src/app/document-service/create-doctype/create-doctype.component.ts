@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {DocumentType} from "../models/documenttype";
 import {DoctypeService} from "../doctype.service";
 import {Router} from "@angular/router";
@@ -15,7 +15,7 @@ import {CommonModule} from "@angular/common";
   templateUrl: './create-doctype.component.html',
   styleUrl: './create-doctype.component.css'
 })
-export class CreateDoctypeComponent implements OnInit {
+export class CreateDoctypeComponent {
 
   documentType: DocumentType = {
     uuid: '',
@@ -27,9 +27,6 @@ export class CreateDoctypeComponent implements OnInit {
 
    constructor(private doctypeService: DoctypeService,
               private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   saveDocumentType(): void {
