@@ -1,0 +1,84 @@
+<div class="card">
+  <div class="card-header  text-center">Добавление документа</div>
+  <div class="card-body">
+    <div class="container-flex">
+
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="mb-3">Основные данные</h4>
+            <div class="form-group mb-3">
+              <label for="document_type" class="form-label">Тип документа</label>
+              <select class="form-select" [ngModel]="selectedType"
+                      (ngModelChange)="onChangeType($event)" name="type_select">
+                <option *ngFor="let doctype of docTypes" [ngValue]="doctype" id="document_type">
+                  {{ doctype.typeOfDocument }}
+                </option>
+              </select>
+              <div id="type_of_document_help" class="form-text">
+                Выберите тип документа
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="document_field_values" class="form-label">Реквизиты документа</label>
+              <table class="table table-bordered align-middle" id="document_field_values">
+                <thead class="table-light">
+                <tr class="text-center">
+                  <th>Реквизит</th>
+                  <th>Значение</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let field of document.documentType.documentFields; index as i">
+                  <td>{{ field }}</td>
+                  <td class="py-1">
+                    <input class="form-control" type="text" [(ngModel)]="document.fieldValues[i]" name="req_value">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+            <div class="form-group mb-3">
+              <label for="issue_date" class="form-label">Дата выдачи</label>
+              <input class="form-control" type="date" [(ngModel)]="document.date" name="doc_issue_date"
+                     id="issue_date">
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="expiration_date" class="form-label">Действителен до:</label>
+              <input class="form-control" type="date" [(ngModel)]="document.expirationDate"
+                     name="doc_expiration_date" id="expiration_date">
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <h4 class="mb-3">Приложение</h4>
+            <div class="form-group mb-3">
+              <label for="formFile" class="form-label">Прикрепить файл</label>
+              <input class="form-control" type="file" (change)="onFileSelected($event)" #fileUpload id="formFile">
+              <div *ngIf="document.attachment.name != ''" id="file_uploaded" class="form-text">
+                Файл загружен. <a href="{{document.attachment.name}}">link</a>
+                <p>
+                  <img ngSrc="{{document.attachment.name}}" width="200" height="100">
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">Примечание</label>
+              <input class="form-control" type="text" id="description"
+                     [(ngModel)]="document.attachment.description" name="attach_description">
+            </div>
+          </div>
+        </div>
+        <hr>
+        <button class="btn btn-success" type="submit">Добавить</button>
+      </form>
+
+    </div>
+  </div>
+</div>
