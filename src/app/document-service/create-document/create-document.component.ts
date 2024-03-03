@@ -1,11 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DocumentService} from "../document.service";
 import {Router} from "@angular/router";
 import {CustomDocument} from "../models/customdocument";
 import {DocumentType} from "../models/documenttype";
 import {InternalAttachment} from "../models/internalattachment";
 import {FormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {DoctypeService} from "../doctype.service";
 
 @Component({
@@ -14,7 +14,8 @@ import {DoctypeService} from "../doctype.service";
   imports: [
     FormsModule,
     NgForOf,
-    NgIf
+    NgIf,
+    NgOptimizedImage
   ],
   templateUrl: './create-document.component.html',
   styleUrl: './create-document.component.css'
@@ -66,16 +67,32 @@ export class CreateDocumentComponent implements OnInit {
     });
   }
 
-  selectedType: DocumentType = this.docTypes[0];
+  selectedType: DocumentType | undefined;
+
   onChangeType(documentType: DocumentType): void {
-    this.selectedType = documentType;
-    console.log(this.selectedType.uuid);
+    this.document.documentType = documentType;
+    this.document.fieldValues = new Array(documentType.documentFields.length).fill("");
+  }
+
+  file: File | null = null;
+
+  onFileSelected(event: any): void {
+    const newFile: File = event.target.files[0];
+    this.file = newFile;
+
+    this.documentService.uploadFile(newFile).subscribe({
+      next: value => {
+        this.document.attachment.name = value.name;
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 
   saveDocument(): void {
     this.documentService.createDocument(this.document).subscribe({
       next: value => {
-        console.log(value);
         this.goToDocumentList();
       },
       error: err => {
@@ -85,13 +102,10 @@ export class CreateDocumentComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.document);
     this.saveDocument();
   }
 
   private goToDocumentList(): void {
     this.router.navigate(['/document-list']);
   }
-
-  protected readonly DocumentType = DocumentType;
 }

@@ -1,62 +1,84 @@
-<div class="card" >
+<div class="card">
   <div class="card-header  text-center">Добавление документа</div>
   <div class="card-body">
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group mb-3">
-        <label for="document_type" class="form-label">Тип документа</label>
-        <select class="form-select" [ngModel]="selectedType"
-                (ngModelChange)="onChangeType($event)" name="type_select">
-          <option *ngFor="let doctype of docTypes" [ngValue]="doctype" id="document_type" >
-            {{doctype.typeOfDocument}}
-          </option>
-        </select>
-        <div id="type_of_document_help" class="form-text">
-          Выберите тип документа
+    <div class="container-flex">
+
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="mb-3">Основные данные</h4>
+            <div class="form-group mb-3">
+              <label for="document_type" class="form-label">Тип документа</label>
+              <select class="form-select" [ngModel]="selectedType"
+                      (ngModelChange)="onChangeType($event)" name="type_select">
+                <option *ngFor="let doctype of docTypes" [ngValue]="doctype" id="document_type">
+                  {{ doctype.typeOfDocument }}
+                </option>
+              </select>
+              <div id="type_of_document_help" class="form-text">
+                Выберите тип документа
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="document_field_values" class="form-label">Реквизиты документа</label>
+              <table class="table table-bordered align-middle" id="document_field_values">
+                <thead class="table-light">
+                <tr class="text-center">
+                  <th>Реквизит</th>
+                  <th>Значение</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let field of document.documentType.documentFields; index as i">
+                  <td>{{ field }}</td>
+                  <td class="py-1">
+                    <input class="form-control" type="text" [(ngModel)]="document.fieldValues[i]" name="req_value">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+            <div class="form-group mb-3">
+              <label for="issue_date" class="form-label">Дата выдачи</label>
+              <input class="form-control" type="date" [(ngModel)]="document.date" name="doc_issue_date"
+                     id="issue_date">
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="expiration_date" class="form-label">Действителен до:</label>
+              <input class="form-control" type="date" [(ngModel)]="document.expirationDate"
+                     name="doc_expiration_date" id="expiration_date">
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <h4 class="mb-3">Приложение</h4>
+            <div class="form-group mb-3">
+              <label for="formFile" class="form-label">Прикрепить файл</label>
+              <input class="form-control" type="file" (change)="onFileSelected($event)" #fileUpload id="formFile">
+              <div *ngIf="document.attachment.name != ''" id="file_uploaded" class="form-text">
+                Файл загружен. <a href="{{document.attachment.name}}">link</a>
+                <p>
+                  <img ngSrc="{{document.attachment.name}}" width="200" height="100">
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">Примечание</label>
+              <input class="form-control" type="text" id="description"
+                     [(ngModel)]="document.attachment.description" name="attach_description">
+            </div>
+          </div>
         </div>
+        <hr>
+        <button class="btn btn-success" type="submit">Добавить</button>
+      </form>
 
-      </div>
-
-
-
-      <div class="form-group mb-3">
-        <label for="issue_date" class="form-label">Дата выдачи</label>
-        <input class="form-control" type="date" id="issue_date">
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="expiration_date" class="form-label">Действителен до:</label>
-        <input class="form-control" type="date" id="expiration_date">
-      </div>
-
-      <div class="form-group mb-3">
-<!--        <label for="document_fields" class="form-label">Реквизиты документа</label>-->
-<!--        <table *ngIf="documentType.documentFields.length != 0" class="table table-striped table-bordered"-->
-<!--               id="document_fields">-->
-<!--          <tbody>-->
-<!--          <tr *ngFor="let field of documentType.documentFields; let i = index">-->
-<!--            <td> #{{ i }}</td>-->
-<!--            <td> {{ documentType.documentFields[i] }}</td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-<!--        <form (ngSubmit)="onAdd()">-->
-<!--          <div class="input-group">-->
-<!--            <input type="text" class="form-control" id="newField"-->
-<!--                   [(ngModel)]="newField" name="newField" placeholder="Новый реквизит документа">-->
-<!--            <button class="btn btn-outline-secondary" type="submit">Добавить</button>-->
-<!--          </div>-->
-<!--          <div id="new_field_help" class="form-text">-->
-<!--            Реквизит документа: "Серия", "Номер" и т.д.-->
-<!--          </div>-->
-<!--        </form>-->
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="description" class="form-label">Примечание</label>
-        <input type="text" class="form-control" id="description"
-               [(ngModel)]="documentType.description" name="description">
-      </div>
-      <button class="btn btn-success" type="submit">Добавить</button>
-    </form>
+    </div>
   </div>
 </div>

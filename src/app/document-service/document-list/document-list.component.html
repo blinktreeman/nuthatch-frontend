@@ -1,16 +1,31 @@
+<h4 class="p-3">Перечень документов</h4>
+
 <table class="table table-striped table-bordered">
   <thead>
   <tr>
     <th>UUID</th>
-    <th>Персона</th>
-    <th>Должность</th>
+    <th>Тип</th>
+    <th>Реквизиты</th>
+    <th>Дата выдачи</th>
+    <th>Действителен до</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let document of documents">
-    <td> {{ document.uuid }} </td>
-    <td> {{ document.documentType.typeOfDocument }} </td>
-    <td> {{ document.attachment.name }} </td>
+    <td> {{ document.uuid }}</td>
+    <td> {{ document.documentType.typeOfDocument }}</td>
+    <td>
+      <table>
+        <tr *ngFor="let field of document.documentType.documentFields; index as i">
+          <td> {{ field }}</td>
+          <td> {{ document.fieldValues[i] }}</td>
+        </tr>
+      </table>
+    </td>
+    <td> {{ document.date }}</td>
+    <td> {{ document.expirationDate }}</td>
+    <td> {{ document.attachment.name }}</td>
   </tr>
   </tbody>
 </table>

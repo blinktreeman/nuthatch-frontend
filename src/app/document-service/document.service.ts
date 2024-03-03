@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CustomDocument} from "./models/customdocument";
+import {InternalAttachment} from "./models/internalattachment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class DocumentService {
   }
 
   getDocumentList(): Observable<CustomDocument[]> {
-    return this.http.get<CustomDocument[]>(`${this.BASE_URL}/all`)
+    return this.http.get<CustomDocument[]>(`${this.BASE_URL}/all`);
+  }
+
+  uploadFile(file: File): Observable<InternalAttachment> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post<InternalAttachment>(`${this.BASE_URL}/upload`, formData);
   }
 }
