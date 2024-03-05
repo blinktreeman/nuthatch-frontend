@@ -1,0 +1,334 @@
+<div class="card">
+  <div class="card-header  text-center">Добавление адреса</div>
+  <div class="card-body">
+    <div class="container-flex">
+      <form (ngSubmit)="onSubmit()">
+        <div class="row">
+          <!--          Left column-->
+          <div class="col-sm-6">
+            <div class="input-form mb-3">
+              <label for="country" class="form-label">Страна</label>
+              <div class="input-group">
+                <select class="form-select" [ngModel]="selectedCountry"
+                        (ngModelChange)="onChangeCountry($event)" name="country_select">
+                  <option *ngFor="let country of countries" [ngValue]="country" id="country">
+                    {{ country.name }}
+                  </option>
+                </select>
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal"
+                        data-bs-target="#add_country_modal">Добавить
+                </button>
+              </div>
+              <div id="country_help" class="form-text">
+                Выберите значение из выпадающего списка.<br>
+                При необходимости нажмите "Добавить" для добавления страны в список
+              </div>
+            </div>
+
+            <div class="input-form mb-3">
+              <label for="entity_of_federation" class="form-label">Субъект Российской Федерации</label>
+              <div class="input-group">
+                <select class="form-select" [ngModel]="selectedEntityOfFederation"
+                        (ngModelChange)="onChangeEntity($event)" name="entity_select">
+                  <option *ngFor="let entity of entitiesOfFederation" [ngValue]="entity"
+                          id="entity_of_federation">
+                    {{ entity.name }}
+                  </option>
+                </select>
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal"
+                        data-bs-target="#add_entity_modal">Добавить</button>
+              </div>
+              <div id="entity_of_federation_help" class="form-text">
+                Выберите значение из выпадающего списка.<br>
+                При необходимости нажмите "Добавить" для добавления субъекта в список
+              </div>
+            </div>
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="district_or_region_code" class="form-label">
+                  Муниципальный район, муниципальный округ, городской округ или внутригородская территория
+                </label>
+                <input class="form-control" type="text" id="district_or_region_code"
+                       [(ngModel)]="address.districtOrRegionCode" name="district_or_region_code">
+              </div>
+            </div>
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="settlement" class="form-label">
+                  Городское или сельское поселение
+                </label>
+                <input class="form-control" type="text" id="settlement"
+                       [(ngModel)]="address.settlement" name="settlement">
+              </div>
+            </div>
+            <hr>
+
+            <div class="input-form mb-3">
+              <label for="locality_type" class="form-label">Тип населенного пункта</label>
+              <div class="input-group">
+                <select class="form-select" [ngModel]="selectedLocalityType"
+                        (ngModelChange)="onChangeLocalityType($event)" name="locality_type_select">
+                  <option *ngFor="let locality of localityTypes" [ngValue]="locality"
+                          id="locality_type">
+                    {{ locality.localityType }}
+                  </option>
+                </select>
+                <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal"
+                        data-bs-target="#add_locality_type_modal">Добавить</button>
+              </div>
+              <div id="locality_type_help" class="form-text mb-3">
+                Выберите значение из выпадающего списка.<br>
+                При необходимости нажмите "Добавить" для добавления типа в список
+              </div>
+              <div class="form-group">
+                <label for="settlement" class="form-label">
+                  Наименование населенного пункта
+                </label>
+                <input class="form-control" type="text" id="locality_name"
+                       [(ngModel)]="address.localityName" name="locality_name">
+              </div>
+            </div>
+
+            <h6>Планировочная структура</h6>
+            <div class="input-form mb-3">
+              <div class="form-group mb-3">
+                <label for="planning_structure_element" class="form-label">
+                  Наименование элемента планировочной структуры
+                </label>
+                <input class="form-control" type="text" id="planning_structure_element"
+                       [(ngModel)]="address.planningStructure.planningStructureElement"
+                       name="planning_structure_element">
+              </div>
+              <div class="form-group">
+                <label for="planning_structure_object" class="form-label">
+                  Наименование объекта планировочной структуры
+                </label>
+                <input class="form-control" type="text" id="planning_structure_object"
+                       [(ngModel)]="address.planningStructure.planningStructureObject"
+                       name="planning_structure_object">
+              </div>
+            </div>
+            <hr>
+            <h6>Улично-дорожная сеть</h6>
+            <div class="input-form mb-3">
+              <div class="form-group mb-3">
+                <label for="road_network_element" class="form-label">
+                  Наименование элемента улично-дорожной сети
+                </label>
+                <input class="form-control" type="text" id="road_network_element"
+                       [(ngModel)]="address.roadNetwork.roadNetworkElement"
+                       name="road_network_element">
+              </div>
+              <div class="form-group">
+                <label for="road_network_object" class="form-label">
+                  Наименование объекта улично-дорожной сети
+                </label>
+                <input class="form-control" type="text" id="road_network_object"
+                       [(ngModel)]="address.roadNetwork.roadNetworkObject"
+                       name="road_network_object">
+              </div>
+            </div>
+          </div>
+
+          <!--          Right column-->
+          <div class="col-sm-6">
+
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="addressing_object_type" class="form-label">
+                  Вид объекта адресации
+                </label>
+                <input class="form-control" type="text" id="addressing_object_type"
+                       [(ngModel)]="address.addressingObjectType"
+                       name="addressing_object_type">
+              </div>
+            </div>
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="plot_number" class="form-label">
+                  Номер земельного участка
+                </label>
+                <input class="form-control" type="text" id="plot_number"
+                       [(ngModel)]="address.plotNumber"
+                       name="plot_number">
+              </div>
+            </div>
+
+            <h6>Тип и номер здания (сооружения)</h6>
+            <div class="input-form mb-3">
+              <div class="form-group mb-3">
+                <label for="building_type" class="form-label">
+                  Тип
+                </label>
+                <input class="form-control" type="text" id="building_type"
+                       [(ngModel)]="address.building.buildingType"
+                       name="building_type">
+              </div>
+              <div class="form-group">
+                <label for="building_number" class="form-label">
+                  Номер
+                </label>
+                <input class="form-control" type="text" id="building_number"
+                       [(ngModel)]="address.building.buildingNumber"
+                       name="building_number">
+              </div>
+            </div>
+            <hr>
+
+            <h6>Тип и номер помещения</h6>
+            <div class="input-form mb-3">
+              <div class="form-group mb-3">
+                <label for="room_type" class="form-label">
+                  Тип
+                </label>
+                <input class="form-control" type="text" id="room_type"
+                       [(ngModel)]="address.room.roomType"
+                       name="room_type">
+              </div>
+              <div class="form-group">
+                <label for="room_number" class="form-label">
+                  Номер
+                </label>
+                <input class="form-control" type="text" id="room_number"
+                       [(ngModel)]="address.room.roomNumber"
+                       name="room_number">
+              </div>
+            </div>
+            <hr>
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="parking_space_number" class="form-label">
+                  Номер машино-места
+                </label>
+                <input class="form-control" type="text" id="parking_space_number"
+                       [(ngModel)]="address.parkingSpaceNumber" name="parking_space_number">
+              </div>
+            </div>
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="aoguid" class="form-label">
+                  Глобальный уникальный идентификатор адресного объекта
+                </label>
+                <input class="form-control" type="text" id="aoguid"
+                       [(ngModel)]="address.aoguid" name="aoguid">
+              </div>
+            </div>
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="oktmo" class="form-label">
+                  Код ОКТМО
+                </label>
+                <input class="form-control" type="text" id="oktmo"
+                       [(ngModel)]="address.oktmo" name="oktmo">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <hr>
+        <button class="btn btn-success" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <!--  Country creation-->
+  <div class="modal fade" id="add_country_modal" tabindex="-1" aria-labelledby="add_country_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="country_modal_label">Добавить страну</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form (ngSubmit)="onCountrySave()" name="country_creation_form">
+          <div class="modal-body">
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="new_country" class="form-label">
+                  Страна:
+                </label>
+                <input class="form-control" type="text" id="new_country"
+                       [(ngModel)]="newCountry.name" name="new_country">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Сохранить</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--  EntityOfFederation creation-->
+  <div class="modal fade" id="add_entity_modal" tabindex="-1" aria-labelledby="add_entity_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="entity_modal_label">Добавить субъект РФ</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form (ngSubmit)="onEntityOfFederationSave()" name="entity_creation_form">
+          <div class="modal-body">
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="new_entity" class="form-label">
+                  Субъект:
+                </label>
+                <input class="form-control" type="text" id="new_entity"
+                       [(ngModel)]="newEntityOfFederation.name" name="new_entity">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Сохранить</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--  LocalityType creation-->
+  <div class="modal fade" id="add_locality_type_modal" tabindex="-1"
+       aria-labelledby="add_locality_type_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="locality_type_modal_label">Добавить тип населенного пункта</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form (ngSubmit)="onLocalityTypeSave()" name="locality_type_creation_form">
+          <div class="modal-body">
+
+            <div class="input-form mb-3">
+              <div class="form-group">
+                <label for="new_locality_type" class="form-label">
+                  Тип:
+                </label>
+                <input class="form-control" type="text" id="new_locality_type"
+                       [(ngModel)]="newLocalityType.localityType" name="new_locality_type">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Сохранить</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

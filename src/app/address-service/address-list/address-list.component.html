@@ -1,0 +1,42 @@
+<h4 class="p-3">Список адресов</h4>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Страна</th>
+    <th>Субъект</th>
+    <th>Район</th>
+    <th>Поселение</th>
+    <th>Тип пункта</th>
+    <th>Наименование планировочной структуры</th>
+    <th>Наименование элемента улично-дорожной сети</th>
+    <th>Вид объекта адресации</th>
+    <th>Номер земельного участка</th>
+    <th>Тип и номер здания</th>
+    <th>Тип и номер помещения</th>
+    <th>Номер машино-места</th>
+    <th>UUID адресного объекта</th>
+    <th>ОКТМО</th>
+  </tr>
+  </thead>
+  <tbody>
+<!--  <tr *ngFor="let document of documents">-->
+<!--    <td> {{ document.uuid }}</td>-->
+<!--    <td> {{ document.documentType.typeOfDocument }}</td>-->
+<!--    <td>-->
+<!--      <table>-->
+<!--        <tr *ngFor="let field of document.documentType.documentFields; index as i">-->
+<!--          <td> {{ field }}</td>-->
+<!--          <td> {{ document.fieldValues[i] }}</td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </td>-->
+<!--    <td> {{ document.date }}</td>-->
+<!--    <td> {{ document.expirationDate }}</td>-->
+<!--    <td> {{ document.attachment.name }}</td>-->
+<!--  </tr>-->
+  </tbody>
+</table>
+<div>
+  <button (click)="createAddress()" class="btn btn-primary btn-sm">Add</button>
+</div>
