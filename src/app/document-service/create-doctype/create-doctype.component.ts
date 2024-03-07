@@ -29,7 +29,7 @@ export class CreateDoctypeComponent {
               private router: Router) {
   }
 
-  saveDocumentType(): void {
+  private saveDocumentType(): void {
     this.doctypeService.createType(this.documentType).subscribe({
       next: value => {
         console.log(value);
