@@ -26,6 +26,20 @@
                [(ngModel)]="legalEntity.ogrn" name="legal_entity_ogrn">
       </div>
 
+      <div class="input-form mb-3">
+        <label for="legal_entity_address" class="form-label">Адрес</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="legal_entity_address"
+                 [(ngModel)]="legalEntity.address" name="legal_entity_address">
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="legal_entity_phone" class="form-label">Телефон</label>
+        <input type="text" class="form-control" id="legal_entity_phone"
+               [(ngModel)]="legalEntity.phone" name="legal_entity_phone">
+      </div>
+
       <!-- Данные по СРО -->
       <div class="form-group mb-3">
         <label for="legal_entity_sro_item" class="form-label">Саморегулируемая организация</label>
@@ -40,62 +54,7 @@
         </div>
       </div>
 
-      <!-- Адрес -->
-      <div class="input-form mb-3">
-        <label for="legal_entity_address" class="form-label">Адрес</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="legal_entity_address"
-                 [(ngModel)]="legalEntity.address" name="legal_entity_address">
-          <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal"
-                  (click)="standardizeTheAddress()" data-bs-target="#standardize_the_address_modal">
-            Стандартизировать адрес
-          </button>
-        </div>
-        <div id="legal_entity_address_help" class="form-text">
-          Введите адрес организации. Для стандартизации нажмите "Стандартизировать адрес"
-        </div>
-      </div>
-
-
-      <div class="form-group mb-3">
-        <label for="legal_entity_phone" class="form-label">Телефон</label>
-        <input type="text" class="form-control" id="legal_entity_phone"
-               [(ngModel)]="legalEntity.phone" name="legal_entity_phone">
-      </div>
-
       <button class="btn btn-success" type="submit">Добавить</button>
     </form>
-  </div>
-</div>
-
-<!-- Modal -->
-<!--  Стандартизировать адрес -->
-<div class="modal fade" id="standardize_the_address_modal" tabindex="-1"
-     aria-labelledby="standardize_the_address_modal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="country_modal_label">Добавить страну</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <!--      <form (ngSubmit)="onCountrySave()" name="country_creation_form">-->
-      <!--        <div class="modal-body">-->
-
-      <!--          <div class="input-form mb-3">-->
-      <!--            <div class="form-group">-->
-      <!--              <label for="new_country" class="form-label">-->
-      <!--                Страна:-->
-      <!--              </label>-->
-      <!--              <input class="form-control" type="text" id="new_country"-->
-      <!--                     [(ngModel)]="newCountry.name" name="new_country">-->
-      <!--            </div>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--        <div class="modal-footer">-->
-      <!--          <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Сохранить</button>-->
-      <!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>-->
-      <!--        </div>-->
-      <!--      </form>-->
-    </div>
   </div>
 </div>

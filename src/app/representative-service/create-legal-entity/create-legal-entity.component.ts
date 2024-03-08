@@ -64,16 +64,11 @@ export class CreateLegalEntityComponent implements OnInit {
     }
     else {
       // @ts-ignore
-      this.legalEntity.sro = undefined;
+      this.legalEntity.sro = null;
     }
     console.log(this.legalEntity.sro);
   }
 
-  standardizeTheAddress(): void {
-    this.organizationService.standardizeTheAddress(this.legalEntity.address).subscribe({
-      next: value => console.log(value)
-    })
-  }
 
   onSubmit(): void {
     this.saveLegalEntity();
@@ -92,6 +87,7 @@ export class CreateLegalEntityComponent implements OnInit {
     shortName: '',
     ogrn: '',
     inn: '',
+    addressUuid: '',
     address: '',
     phone: '',
     sro: this.sro

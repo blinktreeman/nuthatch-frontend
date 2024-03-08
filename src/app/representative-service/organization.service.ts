@@ -33,7 +33,7 @@ export class OrganizationService {
   }
 
   createEntrepreneur(entrepreneur: IndividualEntrepreneur): Observable<IndividualEntrepreneur> {
-    return this.http.post(`${this.BASE_URL}/individual-entrepreneur`, entrepreneur);
+    return this.http.post<IndividualEntrepreneur>(`${this.BASE_URL}/individual-entrepreneur`, entrepreneur);
   }
 
   getEntrepreneurList(): Observable<IndividualEntrepreneur[]> {

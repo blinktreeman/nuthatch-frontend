@@ -6,6 +6,7 @@ export interface LegalEntity {
   shortName: string;
   ogrn: string;
   inn: string;
+  addressUuid: string;
   address: string;
   phone: string;
   sro: Sro;
