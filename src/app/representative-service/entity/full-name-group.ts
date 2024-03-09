@@ -1,5 +1,5 @@
-export interface FullNameGroup {
-  lastName: string;
-  firstName: string;
-  middleName: string;
+export class FullNameGroup {
+  lastName?: string;
+  firstName?: string;
+  middleName?: string;
 }

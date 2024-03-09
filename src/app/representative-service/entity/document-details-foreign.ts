@@ -1,6 +1,6 @@
-export interface DocumentDetailsForeign {
-  docName: string;
-  series: string;
-  number: string;
-  dateIssue: Date;
+export class DocumentDetailsForeign {
+  docName?: string;
+  series?: string;
+  number?: string;
+  dateIssue?: Date;
 }

@@ -1,1 +1,73 @@
-<p>create-representative works!</p>
+<div class="card">
+  <div class="card-header  text-center">Добавление представителя</div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="row">
+        <!-- Left column -->
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <h5>ФИО представителя</h5>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="last_name" class="form-label">Фамилия</label>
+            <input type="text" class="form-control" id="last_name"
+                   [ngModel]="fullNameGroup.lastName"
+                   (ngModelChange)="fullNameGroup.lastName = $event"
+                   name="last_name">
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="first_name" class="form-label">Имя</label>
+            <input type="text" class="form-control" id="first_name"
+                   [ngModel]="fullNameGroup.firstName"
+                   (ngModelChange)="fullNameGroup.firstName = $event"
+                   name="first_name">
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="middle_name" class="form-label">Отчество</label>
+            <input type="text" class="form-control" id="middle_name"
+                   [ngModel]="fullNameGroup.middleName"
+                   (ngModelChange)="fullNameGroup.middleName = $event"
+                   name="middle_name">
+          </div>
+
+          <div class="input-form mb-3">
+            <label for="representative_position" class="form-label">Должность</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="representative_position"
+                     [ngModel]="representative.position"
+                     (ngModelChange)="representative.position = $event"
+                     name="representative_position">
+            </div>
+          </div>
+
+          <div class="input-form mb-3">
+            <label for="representative_nostroy_number" class="form-label">
+              Идентификационный номер в реестре специалистов в области строительства
+            </label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="representative_nostroy_number"
+                     [ngModel]="representative.nostroyNumber"
+                     (ngModelChange)="representative.nostroyNumber = $event"
+                     name="representative_nostroy_number">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <h5>Является представителем:</h5>
+          </div>
+
+<!--          TODO: Выбор организации -->
+
+        </div>
+
+      </div>
+      <button class="btn btn-success" type="submit">Добавить</button>
+    </form>
+  </div>
+</div>

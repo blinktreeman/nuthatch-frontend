@@ -74,23 +74,10 @@ export class CreateLegalEntityComponent implements OnInit {
     this.saveLegalEntity();
   }
 
-  sro: Sro = {
-    uuid: '',
-    name: '',
-    inn: '',
-    ogrn: ''
-  }
+  sro: Sro = new Sro();
 
   legalEntity: LegalEntity = {
-    uuid: '',
-    fullName: '',
-    shortName: '',
-    ogrn: '',
-    inn: '',
-    addressUuid: '',
-    address: '',
-    phone: '',
-    sro: this.sro
+    sro: this.sro,
   }
 
 }

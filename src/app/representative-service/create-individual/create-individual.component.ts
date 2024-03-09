@@ -54,24 +54,14 @@ export class CreateIndividualComponent {
     this.saveIndividual();
   }
 
-  fullNameGroup: FullNameGroup = {
-    firstName: '',
-    middleName: '',
-    lastName: ''
-  }
+  // model
 
-  passportDetailsRU: PassportDetailsRussianFederation = {
-    series: '',
-    number: '',
-    dateIssue: new Date()
-  }
+  fullNameGroup: FullNameGroup = new FullNameGroup();
 
-  documentDetailsForeign: DocumentDetailsForeign = {
-    docName: '',
-    series: '',
-    number: '',
-    dateIssue: new Date()
-  }
+  passportDetailsRU: PassportDetailsRussianFederation =
+    new PassportDetailsRussianFederation();
+
+  documentDetailsForeign: DocumentDetailsForeign = new DocumentDetailsForeign();
 
   passportDetails: PassportDetails = {
     passportDetailsRussianFederation: this.passportDetailsRU,
@@ -79,11 +69,8 @@ export class CreateIndividualComponent {
   }
 
   individual: Individual = {
-    uuid: '',
-    fullNameGroup: this.fullNameGroup,
-    addressUuid: '',
-    address: '',
     isRussianFederationCitizen: true,
+    fullNameGroup: this.fullNameGroup,
     passportDetails: this.passportDetails
   }
 }

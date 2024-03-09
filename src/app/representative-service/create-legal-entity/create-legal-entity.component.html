@@ -5,13 +5,17 @@
       <div class="form-group mb-3">
         <label for="legal_entity_full_name" class="form-label">Полное наименование</label>
         <input type="text" class="form-control" id="legal_entity_full_name"
-               [(ngModel)]="legalEntity.fullName" name="legal_entity_full_name">
+               [ngModel]="legalEntity.fullName"
+               (ngModelChange)="legalEntity.fullName = $event"
+               name="legal_entity_full_name">
       </div>
 
       <div class="form-group mb-3">
         <label for="legal_entity_short_name" class="form-label">Сокращенное наименование</label>
         <input type="text" class="form-control" id="legal_entity_short_name"
-               [(ngModel)]="legalEntity.shortName" name="legal_entity_short_name">
+               [ngModel]="legalEntity.shortName"
+               (ngModelChange)="legalEntity.shortName = $event"
+               name="legal_entity_short_name">
       </div>
 
       <div class="form-group mb-3">
@@ -23,21 +27,27 @@
       <div class="form-group mb-3">
         <label for="legal_entity_ogrn" class="form-label">ОГРН</label>
         <input type="text" class="form-control" id="legal_entity_ogrn"
-               [(ngModel)]="legalEntity.ogrn" name="legal_entity_ogrn">
+               [ngModel]="legalEntity.ogrn"
+               (ngModelChange)="legalEntity.ogrn = $event"
+               name="legal_entity_ogrn">
       </div>
 
       <div class="input-form mb-3">
         <label for="legal_entity_address" class="form-label">Адрес</label>
         <div class="input-group">
           <input type="text" class="form-control" id="legal_entity_address"
-                 [(ngModel)]="legalEntity.address" name="legal_entity_address">
+                 [ngModel]="legalEntity.address"
+                 (ngModelChange)="legalEntity.address = $event"
+                 name="legal_entity_address">
         </div>
       </div>
 
       <div class="form-group mb-3">
         <label for="legal_entity_phone" class="form-label">Телефон</label>
         <input type="text" class="form-control" id="legal_entity_phone"
-               [(ngModel)]="legalEntity.phone" name="legal_entity_phone">
+               [ngModel]="legalEntity.phone"
+               (ngModelChange)="legalEntity.phone = $event"
+               name="legal_entity_phone">
       </div>
 
       <!-- Данные по СРО -->

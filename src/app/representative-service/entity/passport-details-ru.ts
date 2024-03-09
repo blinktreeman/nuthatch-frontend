@@ -1,5 +1,5 @@
-export interface PassportDetailsRussianFederation {
-  series: string;
-  number: string;
-  dateIssue: Date;
+export class PassportDetailsRussianFederation {
+  series?: string;
+  number?: string;
+  dateIssue?: Date;
 }

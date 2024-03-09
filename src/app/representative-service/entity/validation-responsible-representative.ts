@@ -1,2 +1,2 @@
-export interface ValidationResponsibleRepresentative {
+export class ValidationResponsibleRepresentative {
 }

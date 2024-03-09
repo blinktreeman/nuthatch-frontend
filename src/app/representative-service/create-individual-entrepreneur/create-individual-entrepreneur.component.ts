@@ -74,26 +74,12 @@ export class CreateIndividualEntrepreneurComponent implements OnInit {
     this.saveEntrepreneur();
   }
 
-  sro: Sro = {
-    uuid: '',
-    name: '',
-    inn: '',
-    ogrn: ''
-  }
+  sro: Sro = new Sro();
 
-  fullNameGroup: FullNameGroup = {
-    firstName: '',
-    middleName: '',
-    lastName: ''
-  }
+  fullNameGroup: FullNameGroup = new FullNameGroup();
 
   entrepreneur: IndividualEntrepreneur = {
-    uuid: '',
     fullNameGroup: this.fullNameGroup,
-    addressUuid: '',
-    address: '',
-    ogrnip: '',
-    inn: '',
     sro: this.sro
   }
 
