@@ -1,12 +1,14 @@
 <div class="card">
-  <div class="card-header  text-center">Добавление представителя</div>
+  <div class="card-header  text-center">
+    Добавление представителя
+  </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
       <div class="row">
         <!-- Left column -->
         <div class="col-sm-6">
           <div class="mb-3">
-            <h5>ФИО представителя</h5>
+            <h6>ФИО представителя</h6>
           </div>
 
           <div class="form-group mb-3">
@@ -59,11 +61,82 @@
         <!-- Right column -->
         <div class="col-sm-6">
           <div class="mb-3">
-            <h5>Является представителем:</h5>
+            <h6>Является представителем:</h6>
           </div>
 
-<!--          TODO: Выбор организации -->
+          <!--          TODO: Выбор организации -->
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                   [checked]="isLegalEntityRepresentative"
+                   (change)="isLegalEntityRepresentative = !isLegalEntityRepresentative" >
+            <label class="form-check-label" for="flexRadioDefault1">
+              Юридического лица
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                   [checked]="!isLegalEntityRepresentative"
+                   (change)="isLegalEntityRepresentative = !isLegalEntityRepresentative">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Индивидуального предпринимателя
+            </label>
+          </div>
 
+          <!-- Select для ЮЛ-->
+          <div *ngIf="isLegalEntityRepresentative" class="form-group mb-3">
+            <select class="form-select"
+                    [ngModel]="selectedLegalEntity"
+                    (ngModelChange)="onChangeLegalEntity($event)"
+                    name="legal_entity_select">
+              <option *ngFor="let legalEntity of legalEntityList"
+                      [ngValue]="legalEntity"
+                      id="legal_entity_select">
+                {{ legalEntity.shortName }}, ИНН {{ legalEntity.inn }}
+              </option>
+            </select>
+            <div id="legal_entity_help" class="form-text">
+              Выберите организацию (юридическое лицр)
+            </div>
+          </div>
+
+          <!-- Select для ИП-->
+          <div *ngIf="!isLegalEntityRepresentative" class="form-group mb-3">
+            <select class="form-select"
+                    [ngModel]="selectedEntrepreneur"
+                    (ngModelChange)="onChangeEntrepreneur($event)"
+                    name="entrepreneur_select">
+              <option *ngFor="let entrepreneur of individualEntrepreneurList"
+                      [ngValue]="entrepreneur"
+                      id="entrepreneur_select">
+                {{ entrepreneur.fullNameGroup?.lastName }},
+                {{ entrepreneur.fullNameGroup?.firstName }},
+                {{ entrepreneur.fullNameGroup?.middleName }},
+                ИНН {{ entrepreneur.inn }}
+              </option>
+            </select>
+            <div id="entrepreneur_help" class="form-text">
+              Выберите индивидуального предпринимателя
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <h6>Распорядительный документ, подтверждающий полномочия</h6>
+          </div>
+          <div class="form-group mb-3">
+            <select class="form-select"
+                    [ngModel]="selectedDocument"
+                    (ngModelChange)="onChangeDocument($event)"
+                    name="document_select">
+              <option *ngFor="let document of documentList"
+                      [ngValue]="document"
+                      id="document_select">
+                {{ document.documentType?.typeOfDocument }}
+              </option>
+            </select>
+            <div id="document_select_help" class="form-text">
+              Выберите документ
+            </div>
+          </div>
         </div>
 
       </div>

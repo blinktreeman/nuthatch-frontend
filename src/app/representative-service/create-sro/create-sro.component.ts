@@ -42,10 +42,5 @@ export class CreateSroComponent {
     this.saveSro();
   }
 
-  sro: Sro = {
-    uuid: '',
-    name: '',
-    inn: '',
-    ogrn: ''
-  }
+  sro: Sro = new Sro();
 }

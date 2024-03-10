@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Individual} from "../entity/individual";
 import {OrganizationService} from "../organization.service";
 import {Router} from "@angular/router";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-individual-list',
   standalone: true,
-  imports: [],
+    imports: [
+        NgForOf
+    ],
   templateUrl: './individual-list.component.html',
   styleUrl: './individual-list.component.css'
 })

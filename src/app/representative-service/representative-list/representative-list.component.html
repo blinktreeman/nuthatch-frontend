@@ -1,4 +1,37 @@
-<p>representative-list works!</p>
+<h4 class="p-3">Уполномоченные представители организаций</h4>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Ф И О</th>
+    <th>Должность</th>
+    <th>Номер НОСТРОЙ</th>
+    <th>ЮЛ</th>
+    <th>ИП</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr *ngFor="let representative of representativeList">
+    <td>
+      {{ representative.fullNameGroup?.lastName }} <br>
+      {{ representative.fullNameGroup?.firstName }} <br>
+      {{ representative.fullNameGroup?.middleName }}
+    </td>
+    <td> {{ representative.position }}</td>
+    <td> {{ representative.nostroyNumber }}</td>
+    <td> {{ representative.legalEntity?.shortName }}</td>
+    <td>
+      {{ representative.individualEntrepreneur?.fullNameGroup?.lastName }} <br>
+      {{ representative.individualEntrepreneur?.fullNameGroup?.firstName }} <br>
+      {{ representative.individualEntrepreneur?.fullNameGroup?.middleName }} <br>
+      ИНН {{ representative.individualEntrepreneur?.inn }}
+    </td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
 <div>
-  <button (click)="createRepresentative()" class="btn btn-primary btn-sm">Add</button>
+  <button (click)="createRepresentative()" class="btn btn-primary">Добавить</button>
 </div>

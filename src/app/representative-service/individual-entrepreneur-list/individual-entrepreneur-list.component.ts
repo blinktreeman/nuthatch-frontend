@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {IndividualEntrepreneur} from "../entity/individual-entrepreneur";
 import {OrganizationService} from "../organization.service";
 import {Router} from "@angular/router";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-individual-entrepreneur-list',
   standalone: true,
-  imports: [],
+    imports: [
+        NgForOf
+    ],
   templateUrl: './individual-entrepreneur-list.component.html',
   styleUrl: './individual-entrepreneur-list.component.css'
 })

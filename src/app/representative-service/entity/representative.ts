@@ -9,4 +9,5 @@ export class Representative {
   individualEntrepreneur?: IndividualEntrepreneur;
   position?: string;
   nostroyNumber?: string;
+  administrativeDocument?: string;
 }

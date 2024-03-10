@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Representative} from "./entity/representative";
+import {CustomDocument} from "./entity/administrative-document/customdocument";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,8 @@ export class RepresentativeService {
     return this.http.post<Representative>(`${this.BASE_URL}/representative`, representative);
   }
 
+  getDocumentList(): Observable<CustomDocument[]> {
+    return this.http.get<CustomDocument[]>(`${this.BASE_URL}/representative/all-documents`);
+  }
 
 }

@@ -1,5 +1,26 @@
-<p>legal-entity-list works!</p>
+<h4 class="p-3">Юридические лица</h4>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Наименование</th>
+    <th>ИНН</th>
+    <th>ОГРН</th>
+    <th>Адрес</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr *ngFor="let legalEntity of legalEntityList">
+    <td> {{ legalEntity.fullName }}</td>
+    <td> {{ legalEntity.inn }}</td>
+    <td> {{ legalEntity.ogrn }}</td>
+    <td> {{ legalEntity.address }}</td>
+    <td> </td>
+  </tr>
+  </tbody>
+</table>
 
 <div>
-  <button (click)="createLegalEntity()" class="btn btn-primary btn-sm">Add</button>
+  <button (click)="createLegalEntity()" class="btn btn-primary">Добавить</button>
 </div>

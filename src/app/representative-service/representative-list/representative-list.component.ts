@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Representative} from "../entity/representative";
 import {RepresentativeService} from "../representative.service";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-representative-list',
   standalone: true,
-  imports: [],
+    imports: [
+        NgForOf
+    ],
   templateUrl: './representative-list.component.html',
   styleUrl: './representative-list.component.css'
 })

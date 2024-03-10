@@ -1,5 +1,37 @@
-<p>individual-list works!</p>
+<h4 class="p-3">Физические лица</h4>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Ф И О</th>
+    <th>Серия и номер паспорта РФ</th>
+    <th>Серия и номер документа иностранного гражданина</th>
+    <th>Адрес</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr *ngFor="let individual of individualList">
+    <td>
+      {{ individual.fullNameGroup?.lastName }} <br>
+      {{ individual.fullNameGroup?.firstName }} <br>
+      {{ individual.fullNameGroup?.middleName }}
+    </td>
+    <td>
+      Серия {{ individual.passportDetails?.passportDetailsRussianFederation?.series }} <br>
+      Номер {{ individual.passportDetails?.passportDetailsRussianFederation?.number }}
+    </td>
+    <td>
+      Документ {{ individual.passportDetails?.documentDetailsForeign?.docName }} <br>
+      Серия {{ individual.passportDetails?.documentDetailsForeign?.series }} <br>
+      Номер {{ individual.passportDetails?.documentDetailsForeign?.number }}
+    </td>
+    <td> {{ individual.address }}</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
 
 <div>
-  <button (click)="createIndividual()" class="btn btn-primary btn-sm">Add</button>
+  <button (click)="createIndividual()" class="btn btn-primary">Добавить</button>
 </div>

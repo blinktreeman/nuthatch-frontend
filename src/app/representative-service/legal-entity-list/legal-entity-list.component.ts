@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {LegalEntity} from "../entity/legal-entity";
 import {OrganizationService} from "../organization.service";
 import {Router} from "@angular/router";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-legal-entity-list',
   standalone: true,
-  imports: [],
+    imports: [
+        NgForOf
+    ],
   templateUrl: './legal-entity-list.component.html',
   styleUrl: './legal-entity-list.component.css'
 })

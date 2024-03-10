@@ -30,7 +30,7 @@ export class CreateDocumentComponent implements OnInit {
   };
 
   attachment: InternalAttachment = {
-    id: '',
+    uuid: '',
     name: '',
     description: '',
     checksum: ''

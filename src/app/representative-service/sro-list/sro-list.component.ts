@@ -2,11 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Sro} from "../entity/sro";
 import {OrganizationService} from "../organization.service";
 import {Router} from "@angular/router";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-sro-list',
   standalone: true,
-  imports: [],
+    imports: [
+        NgForOf
+    ],
   templateUrl: './sro-list.component.html',
   styleUrl: './sro-list.component.css'
 })
