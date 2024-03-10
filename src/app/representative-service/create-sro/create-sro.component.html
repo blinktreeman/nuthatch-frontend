@@ -1,0 +1,29 @@
+<div class="card" >
+  <div class="card-header  text-center">Добавление саморегулируемого общества</div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group mb-3">
+        <label for="sro_name" class="form-label">Наименование</label>
+        <input type="text" class="form-control" id="sro_name"
+               [(ngModel)]="sro.name" name="sro_name">
+        <div id="sro_name_help" class="form-text">
+          Наименование саморегулируемого общества
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="sro_inn" class="form-label">ИНН</label>
+        <input type="text" class="form-control" id="sro_inn"
+               [(ngModel)]="sro.inn" name="sro_inn">
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="sro_ogrn" class="form-label">ОГРН</label>
+        <input type="text" class="form-control" id="sro_ogrn"
+               [(ngModel)]="sro.ogrn" name="sro_ogrn">
+      </div>
+
+      <button class="btn btn-success" type="submit">Добавить</button>
+    </form>
+  </div>
+</div>

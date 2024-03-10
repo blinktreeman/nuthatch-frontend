@@ -1,5 +1,5 @@
 export interface InternalAttachment {
-  id: string;
+  uuid: string;
   name: string;
   description: string;
   checksum: string;

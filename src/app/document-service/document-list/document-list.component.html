@@ -3,32 +3,32 @@
 <table class="table table-sm table-striped table-bordered">
   <thead>
   <tr>
-    <th>UUID</th>
     <th>Тип</th>
     <th>Реквизиты</th>
     <th>Дата выдачи</th>
     <th>Действителен до</th>
+    <th>Приложение</th>
     <th></th>
   </tr>
   </thead>
-  <tbody>
+  <tbody class="table-group-divider">
   <tr *ngFor="let document of documents">
-    <td> {{ document.uuid }}</td>
     <td> {{ document.documentType.typeOfDocument }}</td>
     <td>
       <table>
         <tr *ngFor="let field of document.documentType.documentFields; index as i">
-          <td> {{ field }}</td>
-          <td> {{ document.fieldValues[i] }}</td>
+          <td> {{ field }}: </td>
+          <td> {{ document.fieldValues[i] }} </td>
         </tr>
       </table>
     </td>
     <td> {{ document.date }}</td>
     <td> {{ document.expirationDate }}</td>
     <td> {{ document.attachment.name }}</td>
+    <td></td>
   </tr>
   </tbody>
 </table>
 <div>
-  <button (click)="createDocument()" class="btn btn-primary btn-sm">Add</button>
+  <button (click)="createDocument()" class="btn btn-primary">Добавить</button>
 </div>
