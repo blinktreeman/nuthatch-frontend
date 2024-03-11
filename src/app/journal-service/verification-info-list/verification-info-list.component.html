@@ -1,1 +1,26 @@
-<p>verification-info-list works!</p>
+<h6 class="mb-3">Верификация закупленной продукции (список результатов процедур входного контроля материалов)</h6>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Наименование</th>
+    <th>Количество</th>
+    <th>Дата поставки</th>
+    <th>Дата осмотра</th>
+    <th>Заключение</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr *ngFor="let material_info of materialOrItemVerificationInfoSet">
+    <td> {{ material_info.materialOrItemName }}</td>
+    <td> {{ material_info.materialOrItemAdditionalInfo?.amount?.value }} \
+      {{ material_info.materialOrItemAdditionalInfo?.amount?.unit }}
+    </td>
+    <td> {{ material_info.deliveryDate }}</td>
+    <td> {{ material_info.samplingDate }}</td>
+    <td> {{ material_info.qualityConclusion }}</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

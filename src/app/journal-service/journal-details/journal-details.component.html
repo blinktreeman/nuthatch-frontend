@@ -1,11 +1,15 @@
 <div class="row mb-3">
-  <div class="col-sm-8 mb-3 mb-sm-0">
+  <div class="mb-3 mb-sm-0">
     <div class="card">
       <div class="card-header">
-        <h4>{{ jounal.incomingMaterialControlJournalTitle?.permanentObjectInfo }}</h4>
+        <h4>{{ journal.incomingMaterialControlJournalTitle?.permanentObjectInfo }}</h4>
       </div>
       <div class="card-body">
-        
+
+        <app-verification-info-list
+          [materialOrItemVerificationInfoSet]="journal.materialOrItemVerificationInfoSet">
+        </app-verification-info-list>
+
       </div>
       <div class="card-footer">
 

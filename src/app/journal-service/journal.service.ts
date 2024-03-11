@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Journal} from "./models/journal";
 import {RepresentativeDto} from "./models/representative-dto";
+import {MaterialOrItemVerificationInfo} from "./models/material-or-item-verification-info";
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,6 @@ export class JournalService {
   getJournalById(uuid: string | undefined): Observable<Journal> {
     return this.http.get<Journal>(`${this.BASE_URL}?uuid=${uuid}`)
   }
+
+
 }

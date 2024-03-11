@@ -6,6 +6,7 @@ import {JournalService} from "../journal.service";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {MaterialOrItemVerificationInfo} from "../models/material-or-item-verification-info";
 
 @Component({
   selector: 'app-create-journal',
@@ -60,8 +61,10 @@ export class CreateJournalComponent implements OnInit {
   journalTitle: JournalTitle = {
     permanentObjectInfo: '',
   }
+  materialOrItemVerificationInfoSet: MaterialOrItemVerificationInfo[] = [];
   journal: Journal = {
     incomingMaterialControlJournalTitle: this.journalTitle,
+    materialOrItemVerificationInfoSet: this.materialOrItemVerificationInfoSet
   }
 
 }
