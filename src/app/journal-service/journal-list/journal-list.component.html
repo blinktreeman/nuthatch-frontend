@@ -1,23 +1,18 @@
 <h4 class="p-3">Журналы входного контроля материалов</h4>
 
-<table class="table table-sm table-striped table-bordered">
-  <thead>
-  <tr>
-    <th>Object Info</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody class="table-group-divider">
-  <tr *ngFor="let journal of journalList">
-    <td> {{ journal.incomingMaterialControlJournalTitle?.permanentObjectInfo }}</td>
-    <td>
-      <button (click)="journalDetails(journal.uuid)" name="journal_details" class="btn btn-primary btn-sm">
+<ul class="list-group mb-3">
+  <li *ngFor="let journal of journalList" class="list-group-item d-flex justify-content-between align-items-center">
+    {{ journal.incomingMaterialControlJournalTitle?.permanentObjectInfo }}
+    <span>
+      <button (click)="journalDetails(journal.uuid)"
+              name="journal_details"
+              class="btn btn-outline-primary btn-sm">
         Просмотреть
       </button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+    </span>
+  </li>
+</ul>
+
 <div>
   <button (click)="createJournal()" class="btn btn-primary">Добавить</button>
 </div>

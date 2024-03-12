@@ -47,5 +47,5 @@ export const routes: Routes = [
   {path: 'journal-list', component: JournalListComponent},
   {path: 'journal-details/:uuid', component: JournalDetailsComponent},
 
-  {path: '', redirectTo: 'document-list', pathMatch: "full"}
+  {path: '', redirectTo: 'journal-list', pathMatch: "full"}
 ];

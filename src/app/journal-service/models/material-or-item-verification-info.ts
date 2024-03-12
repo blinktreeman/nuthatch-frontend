@@ -6,14 +6,14 @@ import {MaterialOrItemAdditionalInfo} from "./material-or-item-additional-info";
 export class MaterialOrItemVerificationInfo {
   uuid?: string;
   incomingMaterialControlJournal?: Journal;
-  deliveryDate?: Date;
-  transportInfo?: TransportInfo;
-  supplier?: string;
   materialOrItemName?: string;
-  qualityApproveDocuments?: QualityApproveDocuments;
-  packagingType?: string;
   materialOrItemAdditionalInfo?: MaterialOrItemAdditionalInfo;
+  deliveryDate?: Date;
+  supplier?: string;
+  packagingType?: string;
+  transportInfo?: TransportInfo;
   samplingPlace?: string;
   samplingDate?: Date;
+  qualityApproveDocuments?: QualityApproveDocuments;
   qualityConclusion?: string;
 }
