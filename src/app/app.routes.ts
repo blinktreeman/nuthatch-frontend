@@ -21,6 +21,9 @@ import {CreateIndividualComponent} from "./representative-service/create-individ
 import {IndividualListComponent} from "./representative-service/individual-list/individual-list.component";
 import {CreateSroComponent} from "./representative-service/create-sro/create-sro.component";
 import {SroListComponent} from "./representative-service/sro-list/sro-list.component";
+import {CreateJournalComponent} from "./journal-service/create-journal/create-journal.component";
+import {JournalListComponent} from "./journal-service/journal-list/journal-list.component";
+import {JournalDetailsComponent} from "./journal-service/journal-details/journal-details.component";
 
 export const routes: Routes = [
 
@@ -40,6 +43,9 @@ export const routes: Routes = [
   {path: 'individual-list', component: IndividualListComponent},
   {path: 'create-sro', component: CreateSroComponent},
   {path: 'sro-list', component: SroListComponent},
+  {path: 'create-journal', component: CreateJournalComponent},
+  {path: 'journal-list', component: JournalListComponent},
+  {path: 'journal-details/:uuid', component: JournalDetailsComponent},
 
-  {path: '', redirectTo: 'document-list', pathMatch: "full"}
+  {path: '', redirectTo: 'journal-list', pathMatch: "full"}
 ];

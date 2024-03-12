@@ -1,0 +1,207 @@
+<h6 class="mb-3">Верификация закупленной продукции (список результатов процедур входного контроля материалов)</h6>
+
+<table class="table table-sm table-striped table-bordered mb-3">
+  <thead>
+  <tr>
+    <th>Наименование</th>
+    <th>Количество</th>
+    <th>Дата поставки</th>
+    <th>Дата осмотра</th>
+    <th>Заключение</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr *ngFor="let material_info of journal?.materialOrItemVerificationInfoSet">
+    <td> {{ material_info.materialOrItemName }}</td>
+    <td> {{ material_info.materialOrItemAdditionalInfo?.amount?.value }} \
+      {{ material_info.materialOrItemAdditionalInfo?.amount?.unit }}
+    </td>
+    <td> {{ material_info.deliveryDate }}</td>
+    <td> {{ material_info.samplingDate }}</td>
+    <td> {{ material_info.qualityConclusion }}</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Добавить запись
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Запись о верификации продукции</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group mb-3">
+          <label for="material_name" class="form-label">Наименование</label>
+          <input type="text" class="form-control" id="material_name"
+                 [(ngModel)]="verificationInfo.materialOrItemName" name="material_name">
+          <div id="material_name_help" class="form-text">
+            Наименование материала, тип, марка
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <div class="form-group mb-3">
+            <label for="batch_number" class="form-label">Номер партии</label>
+            <input type="text" class="form-control" id="batch_number"
+                   [ngModel]="verificationInfo.materialOrItemAdditionalInfo?.batchNumber"
+                   (ngModelChange)="materialOrItemAdditionalInfo.batchNumber = $event"
+                   name="batch_number">
+          </div>
+
+          <div class="row mb-3 align-items-center">
+            <label class="form-label">Количество</label>
+            <div class="col-auto">
+              <label for="amount_unit" class="col-form-label">Единица измерения: </label>
+            </div>
+            <div class="col-auto">
+              <input type="text" class="form-control" id="amount_unit"
+                     [ngModel]="verificationInfo.materialOrItemAdditionalInfo?.amount?.unit"
+                     (ngModelChange)="amount.unit = $event"
+                     name="amount_unit">
+            </div>
+            <div class="col-auto">
+              <label for="amount_value" class="col-form-label">количество: </label>
+            </div>
+            <div class="col-auto">
+              <input type="text" class="form-control" id="amount_value"
+                     [ngModel]="verificationInfo.materialOrItemAdditionalInfo?.amount?.value"
+                     (ngModelChange)="amount.value = $event"
+                     name="amount_value">
+            </div>
+          </div>
+
+          <div class="row mb-3 align-items-center">
+            <label class="form-label">Вес</label>
+            <div class="col-auto">
+              <label for="weight_unit" class="col-form-label">Единица измерения: </label>
+            </div>
+            <div class="col-auto">
+              <input type="text" class="form-control" id="weight_unit"
+                     [ngModel]="verificationInfo.materialOrItemAdditionalInfo?.weight?.unit"
+                     (ngModelChange)="weight.unit = $event"
+                     name="weight_unit">
+            </div>
+            <div class="col-auto">
+              <label for="weight_value" class="col-form-label">количество: </label>
+            </div>
+            <div class="col-auto">
+              <input type="text" class="form-control" id="weight_value"
+                     [ngModel]="verificationInfo.materialOrItemAdditionalInfo?.weight?.value"
+                     (ngModelChange)="weight.value = $event"
+                     name="weight_value">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="delivery_date" class="form-label">Дата поступления</label>
+          <input class="form-control" type="date" id="delivery_date"
+                 [ngModel]="verificationInfo.deliveryDate"
+                 (ngModelChange)="verificationInfo.deliveryDate = $event"
+                 name="delivery_date">
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="supplier" class="form-label">Поставщик</label>
+          <input type="text" class="form-control" id="supplier"
+                 [(ngModel)]="verificationInfo.supplier" name="supplier">
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="packaging_type" class="form-label">Вид упаковки</label>
+          <input type="text" class="form-control" id="packaging_type"
+                 [(ngModel)]="verificationInfo.packagingType" name="packaging_type">
+        </div>
+
+        <div class="row mb-3 align-items-center">
+          <label class="form-label">Информация о транспорте</label>
+          <div class="col-auto">
+            <label for="transport_type" class="col-form-label">Тип транспорта: </label>
+          </div>
+          <div class="col-auto">
+            <input type="text" class="form-control" id="transport_type"
+                   [ngModel]="verificationInfo.transportInfo?.transportType"
+                   (ngModelChange)="transportInfo.transportType = $event"
+                   name="transport_type">
+          </div>
+          <div class="col-auto">
+            <label for="transport_number" class="col-form-label">Номер: </label>
+          </div>
+          <div class="col-auto">
+            <input type="text" class="form-control" id="transport_number"
+                   [ngModel]="verificationInfo.transportInfo?.transportNumber"
+                   (ngModelChange)="transportInfo.transportNumber = $event"
+                   name="transport_number">
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="sampling_place" class="form-label">Место отбора образца (выборки или пробы)</label>
+          <input type="text" class="form-control" id="sampling_place"
+                 [(ngModel)]="verificationInfo.samplingPlace" name="sampling_place">
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="sampling_date" class="form-label">Дата отбора образца</label>
+          <input class="form-control" type="date" id="sampling_date"
+                 [ngModel]="verificationInfo.samplingDate"
+                 (ngModelChange)="verificationInfo.samplingDate = $event"
+                 name="sampling_date">
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+          <h6>Комплект документов, подтверждающих качество (ДПК) материала (изделия)</h6>
+        </div>
+        <div class="form-group mb-3">
+          <label for="document_select" class="form-label">Документ качества</label>
+          <select class="form-select"
+                  [ngModel]="selectedMaterialAmountQualityDocument"
+                  (ngModelChange)="onChangeDocument($event)"
+                  name="document_select">
+            <option *ngFor="let document of documentList"
+                    [ngValue]="document"
+                    id="document_select">
+              {{ document.documentType?.typeOfDocument }}
+            </option>
+          </select>
+          <div id="document_select_help" class="form-text">
+            Документ, подтверждающий качество конкретного количества материала
+            (партии, штуки, комплекта, серии и т.п.)
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="form-group mb-3">
+          <label for="quality_conclusion" class="form-label">Заключение о качестве</label>
+          <input type="text" class="form-control" id="quality_conclusion"
+                 [(ngModel)]="verificationInfo.qualityConclusion" name="quality_conclusion">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                (click)="saveVerificationInfo()">
+          Сохранить
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

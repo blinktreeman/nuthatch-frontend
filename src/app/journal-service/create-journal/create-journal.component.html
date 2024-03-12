@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header  text-center">
+    Добавление журнала
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="form-group mb-3">
+        <label for="permanent_object_info" class="form-label">
+          Сведения об объекте строительства
+        </label>
+        <input type="text" class="form-control" id="permanent_object_info"
+               [(ngModel)]="journalTitle.permanentObjectInfo"
+               name="permanent_object_info">
+      </div>
+
+
+      <!-- Select для ЮЛ-->
+<!--      <div *ngIf="isLegalEntityRepresentative" class="form-group mb-3">-->
+<!--        <select class="form-select"-->
+<!--                [ngModel]="selectedLegalEntity"-->
+<!--                (ngModelChange)="onChangeLegalEntity($event)"-->
+<!--                name="legal_entity_select">-->
+<!--          <option *ngFor="let legalEntity of legalEntityList"-->
+<!--                  [ngValue]="legalEntity"-->
+<!--                  id="legal_entity_select">-->
+<!--            {{ legalEntity.shortName }}, ИНН {{ legalEntity.inn }}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--        <div id="legal_entity_help" class="form-text">-->
+<!--          Выберите организацию (юридическое лицр)-->
+<!--        </div>-->
+<!--      </div>-->
+      <button class="btn btn-success" type="submit">Добавить</button>
+    </form>
+  </div>
+</div>
