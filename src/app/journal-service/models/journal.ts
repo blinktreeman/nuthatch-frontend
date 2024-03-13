@@ -4,5 +4,5 @@ import {MaterialOrItemVerificationInfo} from "./material-or-item-verification-in
 export class Journal {
   uuid?: string;
   incomingMaterialControlJournalTitle?: JournalTitle;
-  materialOrItemVerificationInfoSet: MaterialOrItemVerificationInfo[] = [];
+  materialOrItemVerificationInfoList: MaterialOrItemVerificationInfo[] = [];
 }

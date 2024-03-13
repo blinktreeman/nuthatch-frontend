@@ -41,6 +41,6 @@ export class JournalDetailsComponent implements OnInit {
   journal: Journal = {
     uuid: this.uuid,
     incomingMaterialControlJournalTitle: this.journalTitle,
-    materialOrItemVerificationInfoSet: this.materialOrItemVerificationInfoSet
+    materialOrItemVerificationInfoList: this.materialOrItemVerificationInfoSet
   }
 }

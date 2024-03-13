@@ -15,22 +15,43 @@
       </div>
 
 
-      <!-- Select для ЮЛ-->
-<!--      <div *ngIf="isLegalEntityRepresentative" class="form-group mb-3">-->
-<!--        <select class="form-select"-->
-<!--                [ngModel]="selectedLegalEntity"-->
-<!--                (ngModelChange)="onChangeLegalEntity($event)"-->
-<!--                name="legal_entity_select">-->
-<!--          <option *ngFor="let legalEntity of legalEntityList"-->
-<!--                  [ngValue]="legalEntity"-->
-<!--                  id="legal_entity_select">-->
-<!--            {{ legalEntity.shortName }}, ИНН {{ legalEntity.inn }}-->
-<!--          </option>-->
-<!--        </select>-->
-<!--        <div id="legal_entity_help" class="form-text">-->
-<!--          Выберите организацию (юридическое лицр)-->
-<!--        </div>-->
-<!--      </div>-->
+      <!-- representatives-->
+      <div class="form-group mb-3">
+        <label for="journal_representative_list" class="form-label">Представители</label>
+        <table *ngIf="journalRepresentativeList.length != 0" class="table table-striped table-bordered"
+               id="journal_representative_list">
+          <tbody>
+          <tr *ngFor="let journal_representative of journalRepresentativeList">
+            <td> {{ journal_representative.fullNameGroup?.lastName }}</td>
+            <td> {{ journal_representative.fullNameGroup?.firstName }}</td>
+            <td> {{ journal_representative.fullNameGroup?.middleName }}</td>
+            <td> {{ journal_representative.nostroyNumber }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <form (ngSubmit)="onAdd()">
+          <div class="input-group">
+            <div class="form-group mb-3">
+              <select class="form-select"
+                      [ngModel]="journalRepresentative"
+                      (ngModelChange)="onRepresentativeSelect($event)"
+                      name="legal_entity_select">
+                <option *ngFor="let journal_representative of representativeList"
+                        [ngValue]="journal_representative"
+                        id="legal_entity_select">
+                  {{ journal_representative.fullNameGroup?.lastName }}
+                  {{ journal_representative.fullNameGroup?.firstName }}
+                  {{ journal_representative.fullNameGroup?.middleName }}
+                  {{ journal_representative.nostroyNumber }}
+                </option>
+              </select>
+            </div>
+            <button class="btn btn-outline-primary" type="submit">Добавить</button>
+          </div>
+        </form>
+      </div>
+
+
       <button class="btn btn-success" type="submit">Добавить</button>
     </form>
   </div>
