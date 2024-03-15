@@ -31,7 +31,7 @@
         </table>
         <form (ngSubmit)="onAdd()">
           <div class="input-group">
-            <div class="form-group mb-3">
+<!--            <div class="form-group mb-3">-->
               <select class="form-select"
                       [ngModel]="journalRepresentative"
                       (ngModelChange)="onRepresentativeSelect($event)"
@@ -45,7 +45,7 @@
                   {{ journal_representative.nostroyNumber }}
                 </option>
               </select>
-            </div>
+<!--            </div>-->
             <button class="btn btn-outline-primary" type="submit">Добавить</button>
           </div>
         </form>
