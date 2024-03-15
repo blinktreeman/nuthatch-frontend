@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {MaterialOrItemVerificationInfo} from "../models/material-or-item-verification-info";
 import {JournalService} from "../journal.service";
@@ -27,17 +27,8 @@ import {CustomDocument} from "../models/approve-document/customdocument";
 export class VerificationInfoListComponent implements OnInit {
 
   documentList: CustomDocument[] = [];
-  selectedDocument: CustomDocument | undefined;
 
-  selectedMaterialAmountQualityDocument: string = '';
-  selectedParametersComplianceDocument: string = '';
-  selectedAdditionalParametersComplianceDocument: string = '';
-  selectedAdditionalQualityDocument: string = '';
-
-  @Input()
-  journal: Journal | undefined;
-
-  constructor(private journalService: JournalService) {
+    constructor(private journalService: JournalService) {
   }
 
   ngOnInit(): void {
@@ -54,16 +45,45 @@ export class VerificationInfoListComponent implements OnInit {
     });
   }
 
-  onChangeDocument(document: CustomDocument): void {
+  selectedMaterialAmountQualityDocument: string = '';
+  selectedParametersComplianceDocument: string = '';
+  selectedAdditionalParametersComplianceDocument: string = '';
+  selectedAdditionalQualityDocument: string = '';
+  // TODO: untyped document list
+  untypedQualityApproveDocuments: string[] = [];
+
+  onChangeMaterialAmountQualityDocument(document: CustomDocument): void {
+    this.typedQualityApproveDocuments.materialAmountQualityDocument = document.uuid;
+  }
+
+  onChangeParametersComplianceDocument(document: CustomDocument): void {
+    this.typedQualityApproveDocuments.parametersComplianceDocument = document.uuid;
+  }
+
+  onChangeAdditionalParametersComplianceDocument(document: CustomDocument): void {
+    this.typedQualityApproveDocuments.additionalParametersComplianceDocument = document.uuid;
+  }
+
+  onChangeAdditionalQualityDocument(document: CustomDocument): void {
+    this.typedQualityApproveDocuments.additionalQualityDocument = document.uuid;
+  }
+
+  // TODO: untyped document list
+  onChangeUntypedQualityApproveDocuments(document: CustomDocument): void {
     // this.representative.administrativeDocument = document.uuid;
   }
 
+  @Input() journal: Journal = new Journal();
+  @Output() onVerificationInfoSaved = new EventEmitter<Journal>();
+
   saveVerificationInfo(): void {
     this.verificationInfo.incomingMaterialControlJournal = this.journal;
+    console.log(this.verificationInfo);
     this.journalService.createVerificationInfo(this.verificationInfo).subscribe({
       next: value => {
-        // TODO: Обновить список записей
-        console.log(value);
+        this.journal?.materialOrItemVerificationInfoList.push(value);
+        this.onVerificationInfoSaved.emit(this.journal);
+        console.log(this.journal);
       },
       error: err => console.log(err)
     });
@@ -87,7 +107,7 @@ export class VerificationInfoListComponent implements OnInit {
   };
 
   verificationInfo: MaterialOrItemVerificationInfo = {
-    qualityApproveDocuments: this.qualityApproveDocuments,
+    // qualityApproveDocuments: this.qualityApproveDocuments,
     materialOrItemAdditionalInfo: this.materialOrItemAdditionalInfo,
     transportInfo: this.transportInfo,
   }

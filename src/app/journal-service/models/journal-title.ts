@@ -1,4 +1,4 @@
 export class JournalTitle {
-  permanentObjectInfo?: string;
-  organizationAndRepresentative?: string[];
+  permanentObjectInfo: string = '';
+  organizationAndRepresentative: string[] = [];
 }

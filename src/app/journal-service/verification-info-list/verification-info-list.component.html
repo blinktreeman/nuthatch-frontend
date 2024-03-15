@@ -12,7 +12,7 @@
   </tr>
   </thead>
   <tbody class="table-group-divider">
-  <tr *ngFor="let material_info of journal?.materialOrItemVerificationInfoSet">
+  <tr *ngFor="let material_info of journal?.materialOrItemVerificationInfoList">
     <td> {{ material_info.materialOrItemName }}</td>
     <td> {{ material_info.materialOrItemAdditionalInfo?.amount?.value }} \
       {{ material_info.materialOrItemAdditionalInfo?.amount?.unit }}
@@ -42,7 +42,7 @@
       <div class="modal-body">
 
         <div class="form-group mb-3">
-          <label for="material_name" class="form-label">Наименование</label>
+          <label for="material_name" class="form-label">Наименование *</label>
           <input type="text" class="form-control" id="material_name"
                  [(ngModel)]="verificationInfo.materialOrItemName" name="material_name">
           <div id="material_name_help" class="form-text">
@@ -60,7 +60,7 @@
           </div>
 
           <div class="row mb-3 align-items-center">
-            <label class="form-label">Количество</label>
+            <label class="form-label">Количество *</label>
             <div class="col-auto">
               <label for="amount_unit" class="col-form-label">Единица измерения: </label>
             </div>
@@ -166,35 +166,93 @@
           <h6>Комплект документов, подтверждающих качество (ДПК) материала (изделия)</h6>
         </div>
         <div class="form-group mb-3">
-          <label for="document_select" class="form-label">Документ качества</label>
+          <label for="document01_select" class="form-label">Документ качества</label>
           <select class="form-select"
                   [ngModel]="selectedMaterialAmountQualityDocument"
-                  (ngModelChange)="onChangeDocument($event)"
-                  name="document_select">
+                  (ngModelChange)="onChangeMaterialAmountQualityDocument($event)"
+                  name="document01_select">
             <option *ngFor="let document of documentList"
                     [ngValue]="document"
-                    id="document_select">
+                    id="document01_select">
               {{ document.documentType?.typeOfDocument }}
             </option>
           </select>
-          <div id="document_select_help" class="form-text">
+          <div id="document01_select_help" class="form-text">
             Документ, подтверждающий качество конкретного количества материала
             (партии, штуки, комплекта, серии и т.п.)
           </div>
         </div>
 
+        <div class="form-group mb-3">
+          <label for="document02_select" class="form-label">Документ качества *</label>
+          <select class="form-select"
+                  [ngModel]="selectedParametersComplianceDocument"
+                  (ngModelChange)="onChangeParametersComplianceDocument($event)"
+                  name="document02_select">
+            <option *ngFor="let document of documentList"
+                    [ngValue]="document"
+                    id="document02_select">
+              {{ document.documentType?.typeOfDocument }}
+            </option>
+          </select>
+          <div id="document02_select_help" class="form-text">
+            Документ, подтверждающий соответствие конкретной номенклатуры материала
+            (изделия), конкретного производителя требуемым параметрам
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="document03_select" class="form-label">Документ качества</label>
+          <select class="form-select"
+                  [ngModel]="selectedAdditionalParametersComplianceDocument"
+                  (ngModelChange)="onChangeAdditionalParametersComplianceDocument($event)"
+                  name="document03_select">
+            <option *ngFor="let document of documentList"
+                    [ngValue]="document"
+                    id="document03_select">
+              {{ document.documentType?.typeOfDocument }}
+            </option>
+          </select>
+          <div id="document03_select_help" class="form-text">
+            Документ, подтверждающий соответствие конкретной номенклатуры материала (изделия),
+            конкретного производителя дополнительным показателям качества (пожаробезопасность,
+            санитарная, радиационная безопасность и т.д.)
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="document04_select" class="form-label">Документ качества</label>
+          <select class="form-select"
+                  [ngModel]="selectedAdditionalQualityDocument"
+                  (ngModelChange)="onChangeAdditionalQualityDocument($event)"
+                  name="document04_select">
+            <option *ngFor="let document of documentList"
+                    [ngValue]="document"
+                    id="document04_select">
+              {{ document.documentType?.typeOfDocument }}
+            </option>
+          </select>
+          <div id="document04_select_help" class="form-text">
+            Документ о результатах дополнительного подтверждения качества конкретного количества
+            материала (партии, штуки, комплекта, серии и т.п.), предназначенного к использованию
+            на конкретном строительном Объекте, путём лабраторных исследований, испытаний и т.п.
+          </div>
+        </div>
 
 
+<!--        TODO: untyped document list-->
 
 
 
         <div class="form-group mb-3">
-          <label for="quality_conclusion" class="form-label">Заключение о качестве</label>
+          <label for="quality_conclusion" class="form-label">Заключение о качестве *</label>
           <input type="text" class="form-control" id="quality_conclusion"
                  [(ngModel)]="verificationInfo.qualityConclusion" name="quality_conclusion">
         </div>
 
+        <label class="form-label"><mark>Поля, отмеченные "*" обязательны к заполнению</mark></label>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
         <button type="button" class="btn btn-success" data-bs-dismiss="modal"

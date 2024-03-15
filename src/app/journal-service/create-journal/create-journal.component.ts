@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Journal} from "../models/journal";
 import {JournalTitle} from "../models/journal-title";
-import {RepresentativeDto} from "../models/representative-dto";
+import {RepresentativeDto} from "../models/representative-dto/representative-dto";
 import {JournalService} from "../journal.service";
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
@@ -21,7 +21,7 @@ import {MaterialOrItemVerificationInfo} from "../models/material-or-item-verific
 })
 export class CreateJournalComponent implements OnInit {
 
-  private representativeList: RepresentativeDto[] = [];
+  representativeList: RepresentativeDto[] = [];
 
   ngOnInit(): void {
     this.getRepresentativeList();
@@ -33,6 +33,7 @@ export class CreateJournalComponent implements OnInit {
   private getRepresentativeList(): void {
     this.journalService.getRepresentativeList().subscribe({
       next: value => {
+        console.log(value);
         this.representativeList = value;
       },
       error: err => console.log(err)
@@ -54,17 +55,34 @@ export class CreateJournalComponent implements OnInit {
     })
   }
 
+  journalRepresentative: RepresentativeDto | undefined;
+
+  onRepresentativeSelect(journalRepresentative: RepresentativeDto): void {
+    this.journalRepresentative = journalRepresentative;
+  }
+
+  journalRepresentativeList: RepresentativeDto[] = [];
+
+  onAdd(): void {
+    // @ts-ignore
+    this.journalRepresentativeList.push(this.journalRepresentative);
+  }
+
   onSubmit(): void {
+    // @ts-ignore
+    this.journalRepresentativeList.map(e =>
+      this.journal.incomingMaterialControlJournalTitle?.organizationAndRepresentative.push(e.uuid));
     this.saveJournal();
   }
 
   journalTitle: JournalTitle = {
     permanentObjectInfo: '',
+    organizationAndRepresentative: []
   }
   materialOrItemVerificationInfoSet: MaterialOrItemVerificationInfo[] = [];
   journal: Journal = {
     incomingMaterialControlJournalTitle: this.journalTitle,
-    materialOrItemVerificationInfoSet: this.materialOrItemVerificationInfoSet
+    materialOrItemVerificationInfoList: this.materialOrItemVerificationInfoSet
   }
 
 }

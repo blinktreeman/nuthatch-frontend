@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Journal} from "./models/journal";
-import {RepresentativeDto} from "./models/representative-dto";
+import {RepresentativeDto} from "./models/representative-dto/representative-dto";
 import {MaterialOrItemVerificationInfo} from "./models/material-or-item-verification-info";
 import {CustomDocument} from "./models/approve-document/customdocument";
 
