@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {Journal} from "../models/journal";
 import {JournalService} from "../journal.service";

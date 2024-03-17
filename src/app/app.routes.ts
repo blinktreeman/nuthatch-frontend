@@ -24,6 +24,8 @@ import {SroListComponent} from "./representative-service/sro-list/sro-list.compo
 import {CreateJournalComponent} from "./journal-service/create-journal/create-journal.component";
 import {JournalListComponent} from "./journal-service/journal-list/journal-list.component";
 import {JournalDetailsComponent} from "./journal-service/journal-details/journal-details.component";
+import {HomeComponent} from "./home/home.component";
+import {NavbarComponent} from "./navbar/navbar.component";
 
 export const routes: Routes = [
 
@@ -31,8 +33,6 @@ export const routes: Routes = [
   {path: 'doctype-list', component: DoctypeListComponent},
   {path: 'create-doctype', component: CreateDoctypeComponent},
   {path: 'create-document', component: CreateDocumentComponent},
-  {path: 'create-address', component: CreateAddressComponent},
-  {path: 'address-list', component: AddressListComponent},
   {path: 'create-representative', component: CreateRepresentativeComponent},
   {path: 'representative-list', component: RepresentativeListComponent},
   {path: 'create-legal-entity', component: CreateLegalEntityComponent},
@@ -47,5 +47,15 @@ export const routes: Routes = [
   {path: 'journal-list', component: JournalListComponent},
   {path: 'journal-details/:uuid', component: JournalDetailsComponent},
 
-  {path: '', redirectTo: 'journal-list', pathMatch: "full"}
+  {path: 'home', component: HomeComponent},
+
+  {path: '', outlet: 'navbar', component: NavbarComponent},
+
+  {path: '', redirectTo: 'home', pathMatch: "full"},
+
+
+
+
+
+  // { path: '**', component: PageNotFoundComponent },
 ];
