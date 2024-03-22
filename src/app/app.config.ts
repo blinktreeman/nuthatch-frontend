@@ -4,13 +4,13 @@ import {provideRouter} from '@angular/router';
 import {routes} from './app.routes';
 import {provideHttpClient} from "@angular/common/http";
 import {OAuthService, provideOAuthClient} from "angular-oauth2-oidc";
-import {oauthServiceConfig} from "./environment/oauth-service-config";
+import {environment} from "../environments/environment";
 
 export const authCodeFlowConfig = {
-  issuer: oauthServiceConfig.issuer,
-  tokenEndpoint: oauthServiceConfig.tokenEndpoint,
+  issuer: environment.AUTH_SERVER_ISSUER,
+  tokenEndpoint: environment.AUTH_SERVER_TOKEN_ENDPOINT,
   redirectUri: window.location.origin,
-  clientId: oauthServiceConfig.clientId,
+  clientId: environment.AUTH_SERVER_CLIENT_ID,
   responseType: "code",
   scope: "openid profile",
 }
@@ -23,12 +23,6 @@ function initializeOAuth(oauthService: OAuthService): Promise<void> {
       .then(() => resolve());
   });
 }
-
-// function initializeOAuth(oauthService: OAuthService): void {
-//     oauthService.configure(authCodeFlowConfig);
-//     oauthService.setupAutomaticSilentRefresh();
-//
-// }
 
 export const appConfig: ApplicationConfig = {
   providers: [

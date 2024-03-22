@@ -6,14 +6,14 @@ import {RepresentativeDto} from "./models/representative-dto/representative-dto"
 import {MaterialOrItemVerificationInfo} from "./models/material-or-item-verification-info";
 import {CustomDocument} from "./models/approve-document/customdocument";
 import {OAuthService} from "angular-oauth2-oidc";
-import {journalServiceConfig} from "../environment/journal-service-config";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class JournalService {
 
-  private BASE_URL: string = journalServiceConfig.serviceBaseUrl;
+  private BASE_URL: string = environment.JOURNAL_API_BASE_URL;
 
   constructor(private http: HttpClient,
               private oauthService: OAuthService) {

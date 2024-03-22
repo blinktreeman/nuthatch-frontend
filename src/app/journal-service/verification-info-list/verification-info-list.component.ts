@@ -38,7 +38,6 @@ export class VerificationInfoListComponent implements OnInit {
   private getDocumentList(): void {
     this.journalService.getDocumentList().subscribe({
       next: value => {
-        console.log(value);
         this.documentList = value as CustomDocument[];
       },
       error: err => console.log(err)
@@ -78,12 +77,10 @@ export class VerificationInfoListComponent implements OnInit {
 
   saveVerificationInfo(): void {
     this.verificationInfo.incomingMaterialControlJournal = this.journal;
-    console.log(this.verificationInfo);
     this.journalService.createVerificationInfo(this.verificationInfo).subscribe({
       next: value => {
         this.journal?.materialOrItemVerificationInfoList.push(value);
         this.onVerificationInfoSaved.emit(this.journal);
-        console.log(this.journal);
       },
       error: err => console.log(err)
     });

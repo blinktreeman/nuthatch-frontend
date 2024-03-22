@@ -5,13 +5,14 @@ import {Observable} from "rxjs";
 import {LegalEntity} from "./entity/legal-entity";
 import {IndividualEntrepreneur} from "./entity/individual-entrepreneur";
 import {Individual} from "./entity/individual";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrganizationService {
 
-  private BASE_URL: string = "http://localhost:8765/organization-service/api/v1";
+  private BASE_URL: string = environment.ORGANIZATION_API_BASE_URL;
 
   constructor(private http: HttpClient) {
   }
