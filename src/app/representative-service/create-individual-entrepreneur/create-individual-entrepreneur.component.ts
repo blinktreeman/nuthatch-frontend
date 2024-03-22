@@ -48,7 +48,6 @@ export class CreateIndividualEntrepreneurComponent implements OnInit {
   private saveEntrepreneur(): void {
     this.organizationService.createEntrepreneur(this.entrepreneur).subscribe({
       next: value => {
-        console.log(value);
         this.goToEntrepreneurList();
       },
       error: err => {
@@ -66,7 +65,6 @@ export class CreateIndividualEntrepreneurComponent implements OnInit {
       // @ts-ignore
       this.entrepreneur.sro = null;
     }
-    console.log(this.entrepreneur.sro);
   }
 
 

@@ -41,7 +41,6 @@ export class CreateIndividualComponent {
     }
     this.organizationService.createIndividual(this.individual).subscribe({
       next: value => {
-        console.log(value);
         this.goToIndividualList();
       },
       error: err => {

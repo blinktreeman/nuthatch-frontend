@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Representative} from "./entity/representative";
 import {CustomDocument} from "./entity/administrative-document/customdocument";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RepresentativeService {
 
-  private BASE_URL: string = "http://localhost:8765/organization-service/api/v1";
+  private BASE_URL: string = environment.ORGANIZATION_API_BASE_URL;
 
   constructor(private http: HttpClient) { }
 

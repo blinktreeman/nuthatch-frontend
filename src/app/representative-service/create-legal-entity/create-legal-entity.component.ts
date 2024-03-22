@@ -47,7 +47,6 @@ export class CreateLegalEntityComponent implements OnInit {
   private saveLegalEntity(): void {
     this.organizationService.createLegalEntity(this.legalEntity).subscribe({
       next: value => {
-        console.log(value);
         this.goToLegalEntityList();
       },
       error: err => {
@@ -66,7 +65,6 @@ export class CreateLegalEntityComponent implements OnInit {
       // @ts-ignore
       this.legalEntity.sro = null;
     }
-    console.log(this.legalEntity.sro);
   }
 
 

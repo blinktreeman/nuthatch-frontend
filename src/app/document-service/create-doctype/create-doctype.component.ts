@@ -32,7 +32,6 @@ export class CreateDoctypeComponent {
   private saveDocumentType(): void {
     this.doctypeService.createType(this.documentType).subscribe({
       next: value => {
-        console.log(value);
         this.goToTypeList();
       },
       error: err => {
@@ -47,7 +46,6 @@ export class CreateDoctypeComponent {
   }
 
   onSubmit(): void {
-    console.log(this.documentType);
     this.saveDocumentType();
   }
 

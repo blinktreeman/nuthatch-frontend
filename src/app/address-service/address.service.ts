@@ -5,13 +5,14 @@ import {Country} from "./models/country";
 import {EntityOfFederation} from "./models/entity-of-federation";
 import {LocalityType} from "./models/locality-type";
 import {Address} from "./models/address";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
 
-  private BASE_URL: string = "http://localhost:8765/address-service/api/v1";
+  private BASE_URL: string = environment.ADDRESS_API_BASE_URL;
 
   constructor(private http: HttpClient) { }
 
