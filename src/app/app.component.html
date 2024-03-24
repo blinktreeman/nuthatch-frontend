@@ -10,6 +10,18 @@
   </div>
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
     <li><a routerLink="home" class="nav-link px-2 text-white">Home</a></li>
+    <li class="nav-item dropdown mb-1">
+    <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+       aria-expanded="false">
+      API
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="http://31.129.104.100:8085/swagger-ui/index.html" class="dropdown-item">address-service</a></li>
+      <li><a href="http://5.35.93.180:8085/swagger-ui/index.html" class="dropdown-item">document-service</a></li>
+      <li><a href="http://31.129.106.49:8085/swagger-ui/index.html" class="dropdown-item">organization-service</a></li>
+      <li><a href="http://45.12.72.201:8085/swagger-ui/index.html" class="dropdown-item">incoming-material-service</a></li>
+    </ul>
+  </li>
   </ul>
   <div class="col-md-3 text-end">
     <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
